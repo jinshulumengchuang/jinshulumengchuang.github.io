@@ -17,7 +17,7 @@
 <a href="index.html" class="mdui-list-item mdui-ripple">Back</a>
 </div>
 </div>
-<div class="mdui-container">
+<div class="mdui-container" style="height: auto;width: 100%">
 <label class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo"  for="upload"> Choose</label>
 <a onclick="luanxu()" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo">Random</a>
 <a onclick="xunhuan()" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo">Loop</a>
@@ -25,18 +25,22 @@
 <input onchange="mytable()"  id="upload" type="file" style="display: none;"  multiple/>
 <audio id='play' controls class='mdui-center' autoplay></audio>
 <h3 id='current'></h3>
+<h3 id='mode'></h3>
 <table class="mdui-table-col-numeric mdui-table" id="table" ></table>
 </div>
 <script>
-mode = 'shunxu';
+shunxu();
 function luanxu() {
     mode = 'luanxu';
+    document.getElementById("mode").innerHTML='Mode：Random';
 }
 function xunhuan() {
     mode = 'xunhuan';
+    document.getElementById("mode").innerHTML='Mode：Loop'
 }
 function shunxu() {
     mode = 'shunxu';
+    document.getElementById("mode").innerHTML='Mode：Sequential'
 }
 function mytable() {
    table = document.getElementById("table");
