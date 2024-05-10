@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="mdui/css/mdui.min.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<title>H5Recorder</title>
+  </div>
+</div>
+</div>
+<div class="mdui-toolbar mdui-color-indigo mdui-appbar-fixed">
+<span class="mdui-typo-title">H5Recorder</span>
+</div>
+</head>
+<body class='mdui-appbar-with-tab-larger'>
+<div id="tab1" class="mdui-container">
+<div id="progress" style="display:none" class="mdui-progress">
+  <div class="mdui-progress-indeterminate"></div>
+</div>
+<a id="button1" class="mdui-center mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo">Start</a>
+<a id="button2" class="mdui-center mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo">Stop</a>
+<div id="button3div" style="display:none">
+<a  download href="" id="button3"  class="mdui-center mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo">Export</a>
+</div>
+<div id="playdiv" style="display:none">
+<audio  id='play' controls class='mdui-center' ></audio>
+</div>
+<script>
+button1 = document.getElementById('button1');
+button2 = document.getElementById('button2');
+button3 = document.getElementById('button3');
+buttondiv = document.getElementById('button3');
+progress = document.getElementById('progress');
+play = document.getElementById('play');
+playdiv = document.getElementById('playdiv');
+var chunks = [];
+navigator.mediaDevices.getUserMedia({audio: true,},).then(function (stream) {
+   var options = {
+   audioBitsPerSecond : 480000,
+   mimeType: "audio/webm"
+   }
+   mediaRecorder = new MediaRecorder(stream,options)
+   button1.onclick = function () {
+   progress.style.display = '';
+   mediaRecorder.start();
+   }
+   button2.onclick = function () {
+   progress.style.display = 'none';
+   mediaRecorder.stop();
+   }
+   mediaRecorder.ondataavailable = function (e) {
+   //chunks.push(e.data);
+   //var blob = new Blob(chunks, { type: "audio/aac" });
+   //chunks = [];
+   var audioURL = window.URL.createObjectURL(e.data);
+   play.src = audioURL;
+   playdiv.style.display = ''
+   button3div.style.display = ''
+   button3.href = audioURL
+
+
+};
+});
+</script>
+</div>
+<script src="mdui/js/mdui.min.js"></script>
+</body>
+</html>
