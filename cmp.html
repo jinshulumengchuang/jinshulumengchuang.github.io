@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="mdui/css/mdui.min.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<title>Jinshulumengchuang</title>
+<div class="mdui-appbar  mdui-appbar-fixed">
+<div class="mdui-toolbar mdui-color-indigo">
+<a class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#left-drawer'}" ><i class="mdui-icon material-icons">menu</i></a>
+<a  class="mdui-typo-title">Jinshulumengchuang</a>
+</div>
+</head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-right">
+</div>
+<div class="mdui-drawer mdui-drawer-close mdui-text-color-[mdui-color-black]" id="left-drawer">
+<a href="index.html" class="mdui-list-item mdui-ripple">Welcome</a>
+<a href="cmp.html" class="mdui-list-item mdui-ripple">CrossMusicPlayer</a>
+</div>
+</div>
+<div class="mdui-container">
+<h1>CrossMusicPlayer</h1>
+CrossMusicPlayer is a cross-device music player for web.
+<img style="height: auto;width: 100%" src=1.png></img>
+<img style="height: auto;width: 100%" src=2.png></img>
+A linux device is needed to use this proram (as server). CrossMusicPlayer can play both from you linux server and client devices.All plantforms have  modern browsers should  be supported as client.Chromium is recommend for client.
+<h3>Installion Guide:</h3>
+Visit https://github.com/jinshulumengchuang/CrossMusicPlayer to download the binary file.<br>
+tar xvpf path/to/tarball -C /opt<br>
+use systemd-nspawn to start the service:<br>
+systemd-nspawn  --bind=path/to/the/floder/you/store/muisc:/var/www/html/music   -UbD /opt/CrossMusicPlayer<br>
+connect  iptoyoulinuxdevice:16634 to use the program<br>
+</div>
+<script src="mdui/js/mdui.min.js"></script>
+</body>
+</html>
+
