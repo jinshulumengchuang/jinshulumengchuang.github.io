@@ -59,6 +59,7 @@ function play(count) {
    url = URL.createObjectURL(file);
    document.getElementById('current').innerHTML = 'Playing：' + document.getElementById("upload").files[count].name
    document.getElementById('play').src = url;
+}
    document.getElementById("play").addEventListener('ended', function () {
        if(mode=='luanxu') {
        count = i
@@ -76,7 +77,6 @@ function play(count) {
        playnext();
        }
    }, false);
-}
 </script>
 </div>
 </div>
