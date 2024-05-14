@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="mdui/css/mdui.min.css"></link>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<title>PrivacyFileZone</title>
+<div class="mdui-appbar  mdui-appbar-fixed">
+<div class="mdui-toolbar mdui-color-pink">
+<a  class="mdui-typo-title">PrivacyFileZone</a>
+</div>
+</div>
+</head>
+<div  class="mdui-dialog" id="delalert" >
+  <div class="mdui-dialog-title">Are you sure?</div>
+  <div class="mdui-dialog-actions">
+    <button class="mdui-btn mdui-ripple" mdui-dialog-close>Cancel</button>
+    <button onclick="mydel()" class="mdui-btn mdui-ripple" mdui-dialog-close>Destory</button>
+  </div>
+</div>
+<body class="mdui-appbar-with-tab-larger">
+<script src="localforage.js" ></script>
+<div class="mdui-progress" id="prog"  style="display:none">
+  <div class="mdui-progress-indeterminate mdui-color-pink" ></div>
+</div>
+<div id="tab1" class="mdui-p-a-2">
+<div class="mdui-textfield">
+  <input id="tab1input" class="mdui-textfield-input" type="password" placeholder="Zone Token"/>
+  <button class="mdui-btn mdui-color-pink" onclick="myinit()" >Enter</button>
+   <button class="mdui-btn mdui-color-theme-accent  mdui-color-pink mdui-ripple" mdui-dialog="{target: '#delalert'}">DestoryZone</button>
+
+</div>
+
+
+
+</div>
+<table class="mdui-table" id="zonemain" ></table>
+<script>
+var selectvar = [];
+token = localStorage.getItem("token")
+if(token == null) {
+document.getElementById('tab1').innerHTML = `
+<div class="mdui-textfield">
+  <input id="myinput" class="mdui-textfield-input" type="text" placeholder="Set Zone Token"/>
+  <button class="mdui-btn mdui-color-pink" onclick="mysettoken()" >Enter</button>
+</div>
+What's zone? <br>
+A zone is a  filesystem for storing you files. <br>
+What's zone token?<br>
+Zone token is a string you set, type the zone token to acess you zone.`
+}
+
+
+function mysettoken() {
+token = document.getElementById('myinput').value
+  if(token == false) {
+  return alert("No token")
+  }
+localStorage.setItem('token', token)
+location.reload()
+}
+
+
+
+function myinit() {
+  value = document.getElementById("tab1" + 'input').value;
+  token = localStorage.getItem("token")
+  if(token == value) {
+  document.getElementById("tab1").innerHTML=`
+  <div class="mdui-center">
+  <label class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-pink" id="up" for="upload">Import</label>
+  <input onchange="myimport()"  id="upload" type="file" style="display: none;"  multiple></input>
+  <a class="mdui-btn mdui-color-pink" onclick='myrm()'>Delete</a>
+  <a class="mdui-btn mdui-color-pink" onclick='myexport()'>Export</a>
+  <a class="mdui-btn mdui-color-pink" onclick='myls()'>Refresh</a>
+  <a class="mdui-btn mdui-color-pink" onclick='myall()'>SelectAll</a>
+  <a href={url} id="down" style="display:none" download={fileName}>download</a>
+  </div>
+  `
+  myls()
+  }else {
+  alert('Wrong Token!')
+  }
+}
+Array.prototype.removeByValue = function (val) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] === val) {
+      this.splice(i, 1);
+      i--;
+    }
+  }
+  return this;
+}
+
+
+
+function myimport() {
+   i = 0
+      while(document.getElementById("upload").files[i]) {
+      localforage.setItem(document.getElementById("upload").files[i].name, document.getElementById("upload").files[i]).then(mybar(document.getElementById("upload").files[i].name + ":" + 'OK'))
+      i = i + 1
+      }
+
+}
+function myls() {
+  localforage.keys().then((filelist) => {
+  tablecontent = '<thead><tr><th>Filename</th><th>Select</th></tr></thead><tbody>'
+  i = 0
+  console.log(filelist)
+  while(filelist[i]) {
+      filename = filelist[i];
+      tablecontent = tablecontent + `<tr><td>` + filename  +  `</td> <td><label class="mdui-checkbox"><input type="checkbox"   onclick="myselect('` + filename  + `')" id="` + filename + `" /><i  class="mdui-checkbox-icon"></i></label></td></tr>`;
+      i++;
+      }
+      console.log(tablecontent)
+            document.getElementById("zonemain").innerHTML = tablecontent;
+  });
+
+
+}
+function myselect(path) {
+path2 = path.toString()
+if(document.getElementById(path).checked == true) {
+selectvar.push(path2)
+}
+if(document.getElementById(path).checked == false) {
+selectvar.removeByValue(path2);
+}
+}
+function myrm() {
+i = 0
+while(selectvar[i]) {
+localforage.removeItem(selectvar[i])
+i++
+mybar(selectvar[i] + ':' + 'OK');
+}
+}
+
+function myexport() {
+  i = 0
+  console.log(selectvar)
+  while(selectvar[i]) {
+    filename = selectvar[i]
+    console.log(filename)
+    localforage.getItem(selectvar[i]).then(function (blob) {
+      console.log(blob.name)
+      a = document.getElementById('down')
+      a.download = blob.name
+      b = URL.createObjectURL(blob)
+      a.href =  b
+      a.click()
+      console.log(b)
+      mybar(blob.name + ':' + 'OK');
+    })
+    i++
+
+  }
+}
+
+
+function myall() {
+var a = document.querySelectorAll('input[type=checkbox]');
+var q = 0
+while(a[q]) {
+a[q].click()
+q++
+}
+}
+function mydel() {
+localStorage.clear();
+localforage.clear().then(mybar('Destory success, please refresh.'))
+
+}
+function mydelalert() {
+document.getElementById('delalert').style.display = 'block'
+}
+function mybar(content) {
+mdui.snackbar({
+  message: content,
+  timeout: 100
+});
+}
+</script>
+<script src="mdui/js/mdui.min.js"></script>
+</body>
+</html>
+
+
