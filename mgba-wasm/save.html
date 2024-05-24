@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>mGBA.wasm</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- Bootstrap core CSS -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Material Design Bootstrap -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.min.css" rel="stylesheet">
+
+   <link href="libretro.css" rel="stylesheet" type="text/css">
+   <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css"></link>
+   <link rel="shortcut icon" href="media/retroarch.ico" />
+   <div class="mdui-appbar  mdui-appbar-fixed">
+     <div class="mdui-toolbar mdui-color-indigo">
+     <a class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#left-drawer'}" ><i class="mdui-icon material-icons">menu</i></a>
+     <a  class="mdui-typo-title">mGBA.wasm</a>
+     </div>
+   </div>
+</head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-right">
+  <div class="mdui-drawer mdui-drawer-close mdui-text-color-[mdui-color-black]" id="left-drawer">
+    <a href="index.html" class="mdui-list-item mdui-ripple">Player</a>
+    <a href="save.html" class="mdui-list-item mdui-ripple">Saves</a>
+    <a href="help.html" class="mdui-list-item mdui-ripple">Help</a>
+  </div>
+  <script src="browserfs.min.js"></script>
+  <script src="file.js"></script>
+<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+</body>
+</html>
+
