@@ -218,7 +218,7 @@ function setupFileSystem(backend)
    var xfs1 = new BrowserFS.FileSystem.ZipFS(zipTOC);
    /* create an XmlHttpRequest filesystem for core assets */
    var xfs2 =  new BrowserFS.FileSystem.XmlHttpRequest
-      (".index-xhr", "assets/cores/");
+      ("index-xhr", "assets/cores/");
 
    console.log("WEBPLAYER: initializing filesystem: " + backend);
    mfs.mount('/home/web_user/retroarch/userdata', afs);
