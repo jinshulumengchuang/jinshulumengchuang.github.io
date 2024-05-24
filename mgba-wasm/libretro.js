@@ -248,14 +248,12 @@ function startRetroArch()
    document.getElementById("btnRun").disabled = true;
    $('#btnSaveAdd').removeClass('disabled');
    $('#btnFullscreen').removeClass('disabled');
-   $('#btnMenu').removeClass('disabled');
    $('#btnAdd').removeClass('disabled');
    $('#btnRom').removeClass('disabled');
 
    document.getElementById("btnAdd").disabled = false;
    document.getElementById("btnSaveAdd").disabled = false;
    document.getElementById("btnRom").disabled = false;
-   document.getElementById("btnMenu").disabled = false;
    document.getElementById("btnFullscreen").disabled = false;
 
     Module["canvas"] = document.getElementById("canvas");
