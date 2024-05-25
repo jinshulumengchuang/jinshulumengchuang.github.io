@@ -188,10 +188,10 @@ function zipfsInit() {
   let bufferView = new Uint8Array(buffer);
   let idx = 0;
   // bundle should be in four parts (this can be changed later)
-  Promise.all([fetch("assets/frontend/bundle.zip.aa"),
-               fetch("assets/frontend/bundle.zip.ab"),
-               fetch("assets/frontend/bundle.zip.ac"),
-               fetch("assets/frontend/bundle.zip.ad")
+  Promise.all([fetch("../retro-assets/frontend/bundle.zip.aa"),
+               fetch("../retro-assets/frontend/bundle.zip.ab"),
+               fetch("../retro-assets/frontend/bundle.zip.ac"),
+               fetch("../retro-assets/frontend/bundle.zip.ad")
               ]).then(function(resps) {
     Promise.all(resps.map((r) => r.arrayBuffer())).then(function(buffers) {
       for (let buf of buffers) {
@@ -216,9 +216,9 @@ function setupFileSystem(backend)
 
    /* create an XmlHttpRequest filesystem for the bundled data */
    var xfs1 = new BrowserFS.FileSystem.ZipFS(zipTOC);
-   /* create an XmlHttpRequest filesystem for core assets */
+   /* create an XmlHttpRequest filesystem for core ../retro-assets */
    var xfs2 =  new BrowserFS.FileSystem.XmlHttpRequest
-      ("index-xhr", "assets/cores/");
+      ("index-xhr", "../retro-assets/cores/");
 
    console.log("WEBPLAYER: initializing filesystem: " + backend);
    mfs.mount('/home/web_user/retroarch/userdata', afs);
