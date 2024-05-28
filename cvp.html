@@ -19,15 +19,12 @@
 </div>
 <div class="mdui-container">
 <h1>CrossVideoPlayer</h1>
-CrossVideoPlayer is a cross-device video player for web.
-A linux device is needed to use this proram (as server). CrossVideoPlayer can play both from you linux server and client devices.All plantforms have  modern browsers should  be supported as client.Chromium is recommend for client.
+CrossMusicPlayer is a cross-device music player for web.
+A  device with docker installed is needed to use this proram (as server). CrossVideoPlayer can play both from you docker server and client devices.All plantforms have  modern browsers should  be supported as client.Chromium is recommend for client.
 <h3>Installion Guide:</h3>
-Apache2 and php is needed for this project <br>
-Clone the project: <br>
-git clone https://github.com/jinshulumengchuang/CrossVideoPlayer<br>
-Put the source to the folder of your site(eg./var/www/html(Debian) )<br>
-Don't forget to correct the premission!
-<br>
+On the device with docker installed:<br>
+sudo docker  run -p 9012:80 --name crossvideoplayer -v /path/to/your/videos:/var/www/html/Video -d tubentubentu/crossvideoplayer<br><br>
+Then connect http://ip-of-your-docker-device:9012 in your browser
 </div>
 <script src="mdui/js/mdui.min.js"></script>
 </body>

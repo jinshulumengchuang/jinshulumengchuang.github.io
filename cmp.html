@@ -22,13 +22,11 @@
 CrossMusicPlayer is a cross-device music player for web.
 <img style="height: auto;width: 100%" src=1.png></img>
 <img style="height: auto;width: 100%" src=2.png></img>
-A linux device is needed to use this proram (as server). CrossMusicPlayer can play both from you linux server and client devices.All plantforms have  modern browsers should  be supported as client.Chromium is recommend for client.
+A  device with docker installed is needed to use this proram (as server). CrossMusicPlayer can play both from you docker server and client devices.All plantforms have  modern browsers should  be supported as client.Chromium is recommend for client.
 <h3>Installion Guide:</h3>
-Visit https://github.com/jinshulumengchuang/CrossMusicPlayer to download the binary file.<br>
-tar xvpf path/to/tarball -C /opt<br>
-use systemd-nspawn to start the service:<br>
-systemd-nspawn  --bind=path/to/the/floder/you/store/muisc:/var/www/html/music   -UbD /opt/CrossMusicPlayer<br>
-connect  iptoyoulinuxdevice:16634 to use the program<br>
+On the device with docker installed:<br>
+sudo docker  run -p 9011:80 --name crossmusicplayer -v /path/to/your/musics:/var/www/html/music -d tubentubentu/crossmusicplayer<br><br>
+Then connect http://ip-of-your-docker-device:9011 in your browser
 </div>
 <script src="mdui/js/mdui.min.js"></script>
 </body>
