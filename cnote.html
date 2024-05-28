@@ -23,7 +23,7 @@ CrossNote is a cross-device note APP for web.
 A  device with docker installed is needed to use this proram (as server). CrossNote can play both from you docker server and client devices.All plantforms have  modern browsers should  be supported as client.Chromium is recommend for client.
 <h3>Installion Guide:</h3>
 On the device with docker installed:<br>
-sudo docker  run -p 9010:80 --name crossnote -d tubentubentu/crossnote<br><br>
+sudo docker  run --restart always -p 9010:80 --name crossnote -d tubentubentu/crossnote<br><br>
 Then connect http://ip-of-your-docker-device:9010 in your browser
 </div>
 <script src="mdui/js/mdui.min.js"></script>
