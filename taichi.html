@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="mdui/css/mdui.min.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<title>Jinshulumengchuang</title>
+<div class="mdui-appbar  mdui-appbar-fixed">
+<div class="mdui-toolbar mdui-color-indigo">
+<a class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#left-drawer'}" ><i class="mdui-icon material-icons">menu</i></a>
+<a  class="mdui-typo-title">Jinshulumengchuang</a>
+</div>
+</head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-right">
+</div>
+<div class="mdui-drawer mdui-drawer-close mdui-text-color-[mdui-color-black]" id="left-drawer">
+<a href="index.html" class="mdui-list-item mdui-ripple">Back</a>
+</div>
+</div>
+<div class="mdui-container">
+<h3>Installion Guide:</h3>
+On a device with docker installed:<br>
+sudo docker run -p 19010:8444 -p 19011:19011 -p 19012:19012   -d --restart always  --name taichi --device /dev/dri/renderD128:/dev/dri/renderD128    --shm-size=1GB  tubentubentu/taichi<br>
+You may change "renderD128" to another rendernode(GPU). Use command 'ls /dev/dri' to see the GPUs available.<br>
+<br>
+<h3>Usage:</h3>
+ connect http://ip-of-your-device-with-docker:19011 to use the container.<br>
+http://ip-of-your-device-with-docker:19012 is for file managing.<br>
+You can enable webp and udp  ,disable  xfce4 compositing in settings to gain better exp.
+</div>
+<script src="mdui/js/mdui.min.js"></script>
+</body>
+</html>
+
