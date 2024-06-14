@@ -22,11 +22,16 @@
 On a device with docker installed:<br>
 sudo docker run -p 19010:8444 -p 19011:19011 -p 19012:19012   -d --restart always  --name taichi --device /dev/dri/renderD128:/dev/dri/renderD128    --shm-size=1GB  tubentubentu/taichi<br>
 You may change "renderD128" to another rendernode(GPU). Use command 'ls /dev/dri' to see the GPUs available.<br>
+If your device do not have gpu:<br>
+sudo docker run -p 19010:8444 -p 19011:19011 -p 19012:19012   -d --restart always  --name taichi     --shm-size=1GB  tubentubentu/taichi-gpuless
 <br>
 <h3>Usage:</h3>
  connect http://ip-of-your-device-with-docker:19011 to use the container.<br>
 http://ip-of-your-device-with-docker:19012 is for file managing.<br>
-You can enable webp and udp  ,disable  xfce4 compositing in settings to gain better exp.
+You can enable kasmvnc's webp and udp, disable  xfce4 compositing in settings to gain better exp.<br>
+Set Root password:<br>
+docker exec -it taichi bash<br>
+passwd
 </div>
 <script src="mdui/js/mdui.min.js"></script>
 </body>
